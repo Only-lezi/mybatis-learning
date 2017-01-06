@@ -137,4 +137,38 @@ public class UserMapperTest {
         System.out.println(list);
     }
 
+    //用户信息的综合查询总数
+    @Test
+    public void testFindUserCount() throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        //创建一个UserMapper对象,MyBatis自动生成mapper代理对象
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        //创建包装对象，设置查询条件
+        UserQueryVo userQueryVo = new UserQueryVo();
+        UserCustom userCustom = new UserCustom();
+        userCustom.setSex("女");
+        userCustom.setUsername("Only");
+        userQueryVo.setUserCustom(userCustom);
+        //调用UserMapper的方法
+        int count = userMapper.findUserCount(userQueryVo);
+
+        System.out.println(count);
+    }
+
+    //用户信息的综合查询总数
+    @Test
+    public void testFindUserByResultMap() throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        //创建一个UserMapper对象,MyBatis自动生成mapper代理对象
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        //调用UserMapper的方法
+        User user = userMapper.findUserByResultMap(1);
+
+        System.out.println(user);
+    }
+
 }
