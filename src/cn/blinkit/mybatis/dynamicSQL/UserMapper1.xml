@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.blinkit.mybatis.dynamicSQL.UserMapper1">
+
+
+    <!--
+        WHERE 可以自动去除条件的第一个and
+    -->
+    <select id="findUserList" parameterType="cn.blinkit.mybatis.po.UserQueryVo"
+            resultType="cn.blinkit.mybatis.po.UserCustom">
+        SELECT * FROM user
+        <where>
+            <if test="userCustom != null">
+                <if test="userCustom.sex != null and userCustom.sex != ''">
+                    AND user.sex=#{userCustom.sex}
+                </if>
+                <if test="userCustom.username != null and userCustom.username !=''">
+                    AND user.username LIKE '%${userCustom.username}%'
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="findUserCount" parameterType="cn.blinkit.mybatis.po.UserQueryVo" resultType="int">
+        SELECT COUNT(*) FROM user
+
+        <where>
+            <if test="userCustom != null">
+                <if test="userCustom.sex != null and userCustom.sex != ''">
+                    AND user.sex=#{userCustom.sex}
+                </if>
+                <if test="">
+                    AND user.username LIKE '%${userCustom.username}%'
+                </if>
+            </if>
+        </where>
+</select>
+</mapper>

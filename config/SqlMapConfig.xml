@@ -50,6 +50,8 @@
         <mapper resource="sqlMap/User.xml"></mapper>
         <mapper resource="mapper/UserMapper.xml"></mapper>
 
+        <mapper resource="cn/blinkit/mybatis/dynamicSQL/UserMapper1.xml"></mapper>
+
         <!--2. 通过mapper接口加载映射文件
             遵循一些规范：需要将mapper接口类名和mapper.xml映射文件名称保持一致，且在一个目录中
             前提是：使用的是mapper代理方法
