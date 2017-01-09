@@ -49,6 +49,7 @@
         <!--1. 通过resource方法一次加载一个映射文件-->
         <mapper resource="sqlMap/User.xml"></mapper>
         <mapper resource="mapper/UserMapper.xml"></mapper>
+        <mapper resource="cn/blinkit/mybatis/mapper/OrdersCustomMapper.xml"></mapper>
 
         <mapper resource="cn/blinkit/mybatis/dynamicSQL/UserMapper1.xml"></mapper>
 
@@ -64,5 +65,6 @@
             前提是：使用的是mapper代理方法
         -->
         <!--<package name="cn.blinkit.mybatis.mapper"></package>-->
+
     </mappers>
 </configuration>

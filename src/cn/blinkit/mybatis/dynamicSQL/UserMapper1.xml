@@ -4,7 +4,41 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.blinkit.mybatis.dynamicSQL.UserMapper1">
 
+    <!--定义sql片段
+        id：sql片段的唯一标识
 
+        经验：1.是基于单表来定义sql片段，这样的话这个sql片段可重用性才高
+             2.在sql片段中不要包括where
+    -->
+    <!--
+        使用foreach遍历传入ids
+        collection：指定输入对象中集合属性
+        item：每个遍历生成对象名
+        open：开始遍历时拼接的串
+        close：结束遍历时拼接的串
+        separator：遍历的两个对象中需要拼接的串
+
+        要拼接的串：AND (id=1 OR id=10 OR id=16)
+    -->
+    <sql id="query_user_where">
+        <if test="userCustom != null">
+            <if test="userCustom.sex != null and userCustom.sex != ''">
+                AND user.sex=#{userCustom.sex}
+            </if>
+            <if test="userCustom.username != null and userCustom.username !=''">
+                AND user.username LIKE '%${userCustom.username}%'
+            </if>
+
+            <if test="ids != null">
+                <foreach collection="ids" item="user_id" open="AND (" close=")" separator="or">
+                    id=#{user_id}
+                </foreach>
+            </if>
+        </if>
+    </sql>
+
+    <!--引用sql片段的id，
+        如果refid指定的id不在本mapper文件中，需要前面加namesapce-->
     <!--
         WHERE 可以自动去除条件的第一个and
     -->
@@ -12,14 +46,7 @@
             resultType="cn.blinkit.mybatis.po.UserCustom">
         SELECT * FROM user
         <where>
-            <if test="userCustom != null">
-                <if test="userCustom.sex != null and userCustom.sex != ''">
-                    AND user.sex=#{userCustom.sex}
-                </if>
-                <if test="userCustom.username != null and userCustom.username !=''">
-                    AND user.username LIKE '%${userCustom.username}%'
-                </if>
-            </if>
+            <include refid="query_user_where"></include>
         </where>
     </select>
 
@@ -27,14 +54,7 @@
         SELECT COUNT(*) FROM user
 
         <where>
-            <if test="userCustom != null">
-                <if test="userCustom.sex != null and userCustom.sex != ''">
-                    AND user.sex=#{userCustom.sex}
-                </if>
-                <if test="">
-                    AND user.username LIKE '%${userCustom.username}%'
-                </if>
-            </if>
+            <include refid="query_user_where"></include>
         </where>
-</select>
+    </select>
 </mapper>

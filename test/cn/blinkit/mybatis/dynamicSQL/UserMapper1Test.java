@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.blinkit.mybatis.po.UserCustom;
@@ -54,6 +55,12 @@ public class UserMapper1Test {
         //由于这里使用动态sql，如果不设置某个值，条件不会拼接在sql中
         userCustom.setSex("女");
         userCustom.setUsername("Only");
+        List<Integer> ids = new ArrayList<Integer>();
+        ids.add(1);
+        ids.add(10);
+        ids.add(16);
+        userQueryVo.setIds(ids);
+
         userQueryVo.setUserCustom(userCustom);
         //调用UserMapper的方法
         List<UserCustom> list = userMapper1.findUserList(userQueryVo);
