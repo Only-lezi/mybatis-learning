@@ -3,6 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.blinkit.mybatis.mapper.OrdersCustomMapper">
+    <!--查询订单 关联查询用户信息-->
     <select id="findOrdersUser" resultType="cn.blinkit.mybatis.po.OrdersCustom">
         SELECT orders.*,
         `user`.username,
@@ -10,6 +11,51 @@
         `user`.address
         FROM
             orders,`user`
+        WHERE orders.user_id=`user`.id;
+    </select>
+
+
+
+    <!--查询订单  关联用户的resultMap
+        将整个查询的结果映射到cn.blinkit.mybatis.po.Orders中
+    -->
+    <resultMap id="OrdersUserResultMap" type="cn.blinkit.mybatis.po.Orders">
+        <!--配置映射的订单信息-->
+        <!--
+            id：指定查询列中的唯一标识，订单信息中的唯一标识，如果有多个列组成唯一标识，配置多个id
+            column：订单信息的唯一标识 列
+            property：订单信息的唯一标识 列所映射到的那个属性中
+        -->
+        <id column="id" property="id"></id>
+        <result column="user_id" property="userId"></result>
+        <result column="number" property="number"></result>
+        <result column="createtime" property="createtime"></result>
+        <result column="note" property="note"></result>
+
+        <!--配置映射的关联的用户信息-->
+        <!--association：用于映射关联查询单个对象的信息
+            property：将要关联查询的用户信息映射到Orders中那个属性
+        -->
+        <association property="user" javaType="cn.blinkit.mybatis.po.User">
+            <!--id：关联查询用户的唯一标识
+                column：指定唯一标识用户信息的列
+                javaType：映射到user的那个属性
+            -->
+            <id column="user_id" property="id"></id>
+            <result column="username" property="username"></result>
+            <result column="sex" property="sex"></result>
+            <result column="address" property="address"/>
+        </association>
+    </resultMap>
+
+    <!--查询订单 关联查询用户信息，使用resultMap-->
+    <select id="findOrdersUserResultMap" resultMap="OrdersUserResultMap">
+        SELECT orders.*,
+        `user`.username,
+        `user`.sex,
+        `user`.address
+        FROM
+        orders,`user`
         WHERE orders.user_id=`user`.id;
     </select>
 </mapper>

@@ -2,6 +2,7 @@ package cn.blinkit.mybatis.mapper;
 
 import java.util.List;
 
+import cn.blinkit.mybatis.po.Orders;
 import cn.blinkit.mybatis.po.OrdersCustom;
 
 /**
@@ -11,6 +12,9 @@ import cn.blinkit.mybatis.po.OrdersCustom;
  */
 
 public interface OrdersCustomMapper {
-    //查询订单关联查询用户信息
+    //查询订单 关联查询用户信息
     public List<OrdersCustom> findOrdersUser() throws Exception;
+
+    //查询订单关联查询用户使用resultMap
+    public List<Orders> findOrdersUserResultMap() throws  Exception;
 }

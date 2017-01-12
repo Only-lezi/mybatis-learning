@@ -10,6 +10,7 @@ import org.junit.Test;
 import java.io.InputStream;
 import java.util.List;
 
+import cn.blinkit.mybatis.po.Orders;
 import cn.blinkit.mybatis.po.OrdersCustom;
 
 /**
@@ -48,6 +49,22 @@ public class OrdersCustomMapperTest {
 
         //调用Mapper的方法
         List<OrdersCustom> list = ordersCustomMapper.findOrdersUser();
+
+        System.out.println(list);
+
+        sqlSession.close();
+    }
+
+    @Test
+    public void testFindOrdersUserResultMap() throws Exception {
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        //创建代理对象
+        OrdersCustomMapper ordersCustomMapper = sqlSession.getMapper(OrdersCustomMapper.class);
+
+        //调用Mapper的方法
+        List<Orders> list = ordersCustomMapper.findOrdersUserResultMap();
 
         System.out.println(list);
 

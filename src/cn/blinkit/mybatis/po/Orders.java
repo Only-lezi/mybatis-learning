@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Orders {
+
     private Integer id;
 
     private Integer userId;
@@ -13,6 +14,9 @@ public class Orders {
     private Date createtime;
 
     private String note;
+
+    //添加User对象
+    private User user;
 
     public Integer getId() {
         return id;
@@ -63,5 +67,13 @@ public class Orders {
                 ", createtime=" + createtime +
                 ", note='" + note + '\'' +
                 '}';
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

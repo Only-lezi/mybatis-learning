@@ -1,9 +1,9 @@
 package cn.blinkit.mybatis.po;
 
 /**
- * @Author: Only-lezi
- * @Date: 2017-01-08 12:52
- * @Description: 订单的扩展类
+ * @author Only-lezi
+ * @date: 2017-01-08 12:52
+ * @description: 订单的扩展类
  */
 //通过此类映射订单和用户查询的结果，让此类集成包括字段较多的pojo类
 public class OrdersCustom extends Orders {
