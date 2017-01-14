@@ -18,6 +18,9 @@ public class Orders {
     //添加User对象
     private User user;
 
+    //订单明细
+    private List<Orderdetail> orderDetails;
+
     public Integer getId() {
         return id;
     }
@@ -75,5 +78,13 @@ public class Orders {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Orderdetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<Orderdetail> orderDetails) {
+        this.orderDetails = orderDetails;
     }
 }

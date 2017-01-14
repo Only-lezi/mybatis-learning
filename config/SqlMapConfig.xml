@@ -10,10 +10,15 @@
         <!-- <property name="" value=""/>   -->
     </properties>
     
-    <!--全局配置参数-->
-    <!--<settings>
-        <setting name="" value=""/>
-    </settings>-->
+    <!--全局配置参数,需要时在设置-->
+    <settings>
+        <!-- 打开延迟加载的开关 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- 将积极加载改为消极加载，即延迟加载 -->
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <!-- 开启二级缓存, 默认就是开启的 -->
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
 
     <!--别名定义-->
     <typeAliases>

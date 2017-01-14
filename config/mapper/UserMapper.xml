@@ -8,6 +8,13 @@
  -->
 <mapper namespace="cn.blinkit.mybatis.mapper.UserMapper">
 
+    <!-- 开启本mapper的namespace下的二级缓存
+        type：指定cache接口的实现类的类型，mybatis默认使用PerpetualCache
+
+        如果要和ehcache整合，需要配置type为ehcache实现cache接口的类型
+     -->
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
     <!--
         定义resultMap
         将SELECT id id_,username username_ FROM user 和 User 类中的属性作一个映射关系

@@ -9,6 +9,9 @@ public class Orderdetail {
 
     private Integer itemsNum;
 
+    //商品信息
+    private Items items;
+
     public Integer getId() {
         return id;
     }
@@ -46,5 +49,12 @@ public class Orderdetail {
 		return "Orderdetail [id=" + id + ", ordersId=" + ordersId
 				+ ", itemsId=" + itemsId + ", itemsNum=" + itemsNum + "]";
 	}
-    
+
+    public Items getItems() {
+        return items;
+    }
+
+    public void setItems(Items items) {
+        this.items = items;
+    }
 }
