@@ -13,7 +13,7 @@
 
         如果要和ehcache整合，需要配置type为ehcache实现cache接口的类型
      -->
-    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
 
     <!--
         定义resultMap
